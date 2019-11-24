@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace backeryShop.Models
 {
-    class Customer
+   public class Customer
     {
-        public int id { get; set; }
-        public virtual Order order { get; set; }
-         
+        public int id { get; set; }                
     }
 }

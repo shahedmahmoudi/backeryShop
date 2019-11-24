@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace backeryShop.Models
 {
-    class ProductPack
+  public  class ProductPack
     {
         public int id { get; set; }
         public int count { get; set; }
-        public decimal price { get; set; }
-        public virtual ICollection<Product> products { get; set; }
+        public decimal price { get; set; } 
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace backeryShop.Models
 {
-    class Order
+   public class Order
     {
         public int id { get; set; }
-        public virtual ICollection<Customer> customers { get; set; }
-        public virtual OrderItem orderItem { get; set; }
+        public virtual Customer customer { get; set; }
+        public virtual List<OrderItem> orderItem { get; set; }
 
     }
 }
