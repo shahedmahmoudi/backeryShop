@@ -49,10 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\PacksData.cs" />
     <Compile Include="Interfaces\IOrderItemService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="ModelData\ProductDT.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />

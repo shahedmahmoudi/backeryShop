@@ -1,4 +1,5 @@
-﻿using backeryShop.Interfaces;
+﻿using backeryShop.DataModel;
+using backeryShop.Interfaces;
 using backeryShop.Models;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace backeryShop.Services
             foreach (var Oitem in orderItem)
             {
                 OrderItemService orderItemService = new OrderItemService();
-                int val = orderItemService.GetAllOfPack();
+                List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);
             }
 
             return "";
