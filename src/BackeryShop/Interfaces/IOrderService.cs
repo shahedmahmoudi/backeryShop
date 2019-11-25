@@ -16,6 +16,6 @@ namespace backeryShop.Interfaces
     /// </summary>
     interface IOrderService
     {
-        List<ResultData> CalculationOrder(Order order)
+        List<ResultData> CalculationOrder(Order order);
     }
 }

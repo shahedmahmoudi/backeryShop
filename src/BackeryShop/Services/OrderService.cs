@@ -30,19 +30,19 @@ namespace backeryShop.Services
                 List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);
                 if (packDat.Count > 0)
                 {
-
                     List<PacksData> BestPack = orderItemService.findBestPack(packDat);
                     foreach (var BestItem in BestPack)
                     {
                         result.Add(new ResultData { packsData = BestItem, Result = true });
-
-                        //result += BestItem.ToString() + "\n";// BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " of "+BestItem.ProductPack.count +" Pack " + BestItem.Product.name + "  \n ";
                     }
                 }
                 else
+                {
+                    PacksData packdata = new PacksData(Oitem.Count,  Oitem.product);
+                      
                     result.Add(new ResultData { Result = false });
+                }
             }
-
             return result;
         }
     }

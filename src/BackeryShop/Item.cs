@@ -61,8 +61,12 @@ namespace BackeryShop
             //    orderItem = orderItem
             //};
             OrderService orderService = new OrderService();
-            string pp = orderService.CalculationOrder(order);
-            Console.WriteLine(pp);
+            List<ResultData> td = orderService.CalculationOrder(order);
+            foreach (var item in td)
+            {
+                Console.WriteLine(item.packsData.ToString());
+            }
+
             return 1;
         }
     }

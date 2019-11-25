@@ -9,8 +9,7 @@ namespace backeryShop.DataModel
 {
     class ResultData
     {
-        public PacksData packsData { get; set; }
-        
+        public PacksData packsData { get; set; }        
         public bool Result { get; set; }
  
     }

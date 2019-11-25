@@ -22,6 +22,12 @@ namespace backeryShop.DataModel
             this.ProductPack = productPack;
             this.Product = product;
         }
+        public PacksData(int count,  Product product)
+        {
+            this.Count = count;
+            this.ProductPack = productPack;
+            this.Product = product;
+        }
 
         public int Count { get => count; set => count = value; }
         public ProductPack ProductPack { get => productPack; set => productPack = value; }
