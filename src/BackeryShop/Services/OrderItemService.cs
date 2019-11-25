@@ -33,9 +33,7 @@ namespace backeryShop.Services
                     {
                         int weight = packs.ToArray()[j].count;
                         int count = CountOrderItem >= weight ? CountOrderItem / weight : 0;
-
                         answer.Add(PacksData.CreatePacksData(count, packs.ToArray()[j], orderItem.product));
-
                         if (CountOrderItem % weight == 0)
                         {
                             AllPack.Add(answer);

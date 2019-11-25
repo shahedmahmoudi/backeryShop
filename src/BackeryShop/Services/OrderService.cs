@@ -25,14 +25,20 @@ namespace backeryShop.Services
             string result = "";
             foreach (var Oitem in orderItem)
             {
+
                 OrderItemService orderItemService = new OrderItemService();
-                List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);                 
-                List<PacksData> BestPack = orderItemService.findBestPack(packDat);
-                foreach (var BestItem in BestPack)
+                List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);
+                if (packDat.Count > 0)
                 {
-                    result += BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " ta "+ BestItem.Product.name +"  \n ";
+                    
+                    List<PacksData> BestPack = orderItemService.findBestPack(packDat);
+                    foreach (var BestItem in BestPack)
+                    {
+                        result += BestItem.ToString() + "\n";// BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " of "+BestItem.ProductPack.count +" Pack " + BestItem.Product.name + "  \n ";
+                    }
                 }
-                 
+                else
+                    result = Oitem.product.name + " nadarim \n ";
             }
 
             return result;

@@ -14,6 +14,7 @@ namespace backeryShop.Models
         public int id { get; set; }
         public int Count { get; set; }
         public virtual  Product  product { get; set; }
-    
+        
+
     }
 }
