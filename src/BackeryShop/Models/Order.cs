@@ -10,10 +10,9 @@ namespace backeryShop.Models
     /// @since 2019-11-25
     /// </summary>
     public class Order
-    {
+    {    
         public int id { get; set; }
         public virtual Customer customer { get; set; }
         public virtual List<OrderItem> orderItem { get; set; }
-
     }
 }
