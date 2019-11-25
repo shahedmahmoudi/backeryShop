@@ -1,4 +1,5 @@
-﻿using backeryShop.Models;
+﻿using backeryShop.DataModel;
+using backeryShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,8 @@ namespace backeryShop.Interfaces
     interface IOrderItemService
     {
         int GetAllOfPack(OrderItem orderItem);
+        List<PacksData> findBestPack(List<List<PacksData>> packDat);
+        decimal calculateTotalPrice(List<PacksData> answer);
+        int totalCount(List<PacksData> answer);
     }
 }

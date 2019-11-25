@@ -13,8 +13,7 @@ namespace backeryShop.Models
     {
         public int id { get; set; }
         public int count { get; set; }
-        public decimal price { get; set; }
-        public virtual Product product { get; set; }
+        public decimal price { get; set; } 
 
     }
 }

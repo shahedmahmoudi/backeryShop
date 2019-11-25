@@ -1,4 +1,5 @@
-﻿using backeryShop.Models;
+﻿using backeryShop.DataModel;
+using backeryShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace backeryShop.Interfaces
     /// </summary>
     interface IOrderService
     {
-          string CalculationOrder(Order order);
+        List<ResultData> CalculationOrder(Order order)
     }
 }

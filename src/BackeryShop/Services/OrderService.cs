@@ -19,10 +19,10 @@ namespace backeryShop.Services
     {
         /// <param name="order">
         /// @return </param>
-        public string CalculationOrder(Order order)
+        public List<ResultData> CalculationOrder(Order order)
         {
-            List<OrderItem> orderItem = order.orderItem;
-            string result = "";
+            List<ResultData> result = new List<ResultData>();
+            List<OrderItem> orderItem = order.orderItem;          
             foreach (var Oitem in orderItem)
             {
 
@@ -30,15 +30,17 @@ namespace backeryShop.Services
                 List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);
                 if (packDat.Count > 0)
                 {
-                    
+
                     List<PacksData> BestPack = orderItemService.findBestPack(packDat);
                     foreach (var BestItem in BestPack)
                     {
-                        result += BestItem.ToString() + "\n";// BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " of "+BestItem.ProductPack.count +" Pack " + BestItem.Product.name + "  \n ";
+                        result.Add(new ResultData { packsData = BestItem, Result = true });
+
+                        //result += BestItem.ToString() + "\n";// BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " of "+BestItem.ProductPack.count +" Pack " + BestItem.Product.name + "  \n ";
                     }
                 }
                 else
-                    result = Oitem.product.name + " nadarim \n ";
+                    result.Add(new ResultData { Result = false });
             }
 
             return result;

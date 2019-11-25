@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\PacksData.cs" />
+    <Compile Include="DataModel\ResultData.cs" />
     <Compile Include="Interfaces\IOrderItemService.cs" />
     <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Item.cs" />
