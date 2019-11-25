@@ -21,7 +21,8 @@ namespace backeryShop.Services
             List<OrderItem> orderItem = order.orderItem;
             foreach (var Oitem in orderItem)
             {
-
+                OrderItemService orderItemService = new OrderItemService();
+                int val = orderItemService.GetAllOfPack();
             }
 
             return "";
