@@ -20,13 +20,19 @@ namespace backeryShop.Services
         public  string CalculationOrder(Order order)
         {
             List<OrderItem> orderItem = order.orderItem;
+            string result = "";
             foreach (var Oitem in orderItem)
             {
                 OrderItemService orderItemService = new OrderItemService();
-                List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);
+                List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);                 
+                List<PacksData> BestPack = orderItemService.findBestPack(packDat);
+                foreach (var BestItem in BestPack)
+                {
+                    result += BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " ta \n";
+                }
             }
 
-            return "";
+            return result;
         }
     }
 }

@@ -17,9 +17,13 @@ namespace backeryShop.DataModel
         /// @return </param>
         public PacksData(int count, ProductPack productPack)
         {
-            this.count = count;
-            this.productPack = productPack;
+            this.Count = count;
+            this.ProductPack = productPack;
         }
+
+        public int Count { get => count; set => count = value; }
+        public ProductPack ProductPack { get => productPack; set => productPack = value; }
+
         /// <param name="count"> </param>
         /// <param name="productPack">
         /// @return </param>

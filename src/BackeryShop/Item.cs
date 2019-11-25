@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using backeryShop.Models; 
+using backeryShop.Models;
+using backeryShop.Services;
 
 namespace BackeryShop
 {
@@ -27,7 +28,9 @@ namespace BackeryShop
                 customer = customer,
                 orderItem = orderItem
             };
-           Console.Write( "" );
+            OrderService os = new OrderService();
+            string pp = os.CalculationOrder(order);
+            Console.WriteLine(pp);
             return 1;
         }
     }

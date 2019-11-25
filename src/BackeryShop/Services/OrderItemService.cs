@@ -48,6 +48,28 @@ namespace backeryShop.Services
           
         }
 
-       
+        internal List<PacksData> findBestPack(List<List<PacksData>> packDat)
+        {
+            List<PacksData> result = packDat[0];
+            foreach (List<PacksData> answer in packDat)            
+                if (totalCount(answer) < totalCount(result) && calculateTotalPrice(answer) <= calculateTotalPrice(result))                
+                    result = answer;                
+            
+            return result;
+        }
+
+        private decimal calculateTotalPrice(List<PacksData> answer)
+        {
+            decimal total = Decimal.Zero;
+            foreach (var item in answer)           
+                total += decimal.Multiply(Convert.ToDecimal(item.Count), item.ProductPack.price);            
+
+            return total;
+        }   
+
+        private int totalCount(List<PacksData> answer)
+        {
+            return answer.Sum(x => x.Count);
+        }
     }
 }
