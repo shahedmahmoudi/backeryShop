@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace backeryShop.Models
 {
+    /// <summary>
+    /// Product model store Products
+    /// Product model is mutable.
+    /// 
+    /// @author Shahed Mahmoudi, shahed.mahmoudi@gmail.com
+    /// @since 2019-11-25
+    /// </summary>
     public class Product
     {
         public int id { get; set; }

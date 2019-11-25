@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace backeryShop.Models
 {
-  public  class ProductPack
+    /// <summary>
+    /// ProductPack model store ProductPacks
+    /// ProductPack model is mutable.
+    /// 
+    /// @author Shahed Mahmoudi, shahed.mahmoudi@gmail.com
+    /// @since 2019-11-25
+    /// </summary>
+    public class ProductPack
     {
         public int id { get; set; }
         public int count { get; set; }
@@ -27,23 +30,6 @@ namespace backeryShop.Models
             return this.count.CompareTo(other.count);
 
         }
-        //public int Compareo(ProductPack other)
-        //{
-
-        //    if (this.count > other.count)
-        //    {
-        //        return -1;
-
-        //    }
-        //    else if (this.count < other.count)
-        //    {
-        //        return 1;
-
-        //    }
-        //    else
-        //    {
-        //        return 0;
-        //    }
-        //}
+       
     }
 }
