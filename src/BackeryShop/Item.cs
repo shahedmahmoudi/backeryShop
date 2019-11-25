@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using backeryShop.Models;
 using backeryShop.Services;
+using backeryShop.DataModel;
 
 namespace BackeryShop
 {
@@ -28,8 +26,8 @@ namespace BackeryShop
                 customer = customer,
                 orderItem = orderItem
             };
-            OrderService os = new OrderService();
-            string pp = os.CalculationOrder(order);
+            OrderService orderService = new OrderService();
+            string pp = orderService.CalculationOrder(order);
             Console.WriteLine(pp);
             return 1;
         }

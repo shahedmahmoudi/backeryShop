@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using backeryShop.Models;
+using System.Collections.Generic;
  
 
-namespace backeryShop.Models
+namespace backeryShop.DataModel
 {
     /// <summary>
     ///  Fixed data on the amount and packaging of products
@@ -19,9 +20,6 @@ namespace backeryShop.Models
         };
 
         public static Product Vegemite_Scroll = new Product() { code = "VS5", id = 1, name = "Vegemite Scroll", productPacks = Vegemite_Scroll_Pack };
-
-
-
 
         public static List<ProductPack> Blueberry_Muffin_Pack = new List<ProductPack>()
         {

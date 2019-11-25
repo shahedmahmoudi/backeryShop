@@ -16,7 +16,8 @@ namespace backeryShop.Services
     /// </summary>
     class OrderItemService
     {
-
+        /// <param name="orderItem">
+		/// @return </param>
         public List<List<PacksData>> GetAllOfPack(OrderItem orderItem)
         {
             ICollection<ProductPack> packs = orderItem.product.productPacks.OrderByDescending(x => x.count).ToList();
@@ -33,7 +34,7 @@ namespace backeryShop.Services
                         int weight = packs.ToArray()[j].count;
                         int count = CountOrderItem >= weight ? CountOrderItem / weight : 0;
 
-                        answer.Add(PacksData.CreatePacksData(count, packs.ToArray()[j]));
+                        answer.Add(PacksData.CreatePacksData(count, packs.ToArray()[j], orderItem.product));
 
                         if (CountOrderItem % weight == 0)
                         {
@@ -43,11 +44,11 @@ namespace backeryShop.Services
                     }
                 }
             }
-
             return AllPack;
           
         }
-
+        /// <param name="packDat">
+        /// @return </param>
         internal List<PacksData> findBestPack(List<List<PacksData>> packDat)
         {
             List<PacksData> result = packDat[0];
@@ -57,7 +58,8 @@ namespace backeryShop.Services
             
             return result;
         }
-
+        /// <param name="answerPacksData">
+        /// @return </param>
         private decimal calculateTotalPrice(List<PacksData> answer)
         {
             decimal total = Decimal.Zero;
@@ -65,8 +67,9 @@ namespace backeryShop.Services
                 total += decimal.Multiply(Convert.ToDecimal(item.Count), item.ProductPack.price);            
 
             return total;
-        }   
-
+        }
+        /// <param name="answerPacksData">
+        /// @return </param>
         private int totalCount(List<PacksData> answer)
         {
             return answer.Sum(x => x.Count);

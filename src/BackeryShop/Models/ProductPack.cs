@@ -14,22 +14,7 @@ namespace backeryShop.Models
         public int id { get; set; }
         public int count { get; set; }
         public decimal price { get; set; }
-        public int weight { get; set; }
+        public virtual Product product { get; set; }
 
-
-
-
-        public int Compare(ProductPack other)
-        {
-            if (this.count == 0 || other.count == 0)
-            {
-                return 0;
-            }
-
-            
-            return this.count.CompareTo(other.count);
-
-        }
-       
     }
 }

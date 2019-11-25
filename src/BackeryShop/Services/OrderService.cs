@@ -17,7 +17,9 @@ namespace backeryShop.Services
     /// </summary>
     class OrderService: IOrderService
     {
-        public  string CalculationOrder(Order order)
+        /// <param name="order">
+        /// @return </param>
+        public string CalculationOrder(Order order)
         {
             List<OrderItem> orderItem = order.orderItem;
             string result = "";
@@ -28,8 +30,9 @@ namespace backeryShop.Services
                 List<PacksData> BestPack = orderItemService.findBestPack(packDat);
                 foreach (var BestItem in BestPack)
                 {
-                    result += BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " ta \n";
+                    result += BestItem.ProductPack.price.ToString() + "   " + BestItem.Count.ToString() + " ta "+ BestItem.Product.name +"  \n ";
                 }
+                 
             }
 
             return result;

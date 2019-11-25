@@ -58,7 +58,7 @@
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductPack.cs" />
-    <Compile Include="Models\StaticProduct.cs" />
+    <Compile Include="DataModel\StaticProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OrderItemService.cs" />
