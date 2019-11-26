@@ -7,6 +7,13 @@ using System.Collections.Generic;
 
 namespace BuildEng.UnitTests
 {
+    /// <summary>
+	/// Unit test for Transaction
+	/// 
+	/// @author Shahed Mahmoudi, shahed.mahmoudi@gmail.com
+	/// @since 2019-11-26
+	/// 
+	/// </summary>
     [TestFixture]
     public class OrderTest
     {
@@ -34,7 +41,8 @@ namespace BuildEng.UnitTests
             ResultText.Add("    3 * 2 $9.95");
             ResultText.Add("13 CF $25.85");
             ResultText.Add("    2 * 5 $9.95");
-            ResultText.Add("    1 x 3 $5.95");
+            ResultText.Add("    1 * 3 $5.95");
+
             // Act            
             List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
 
@@ -52,6 +60,33 @@ namespace BuildEng.UnitTests
                     inx++;
                 }
             }          
+        }
+
+        [Test]
+        public virtual void UnSuccessTestWithDiffrentCount()
+        {
+            // Arrange
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>
+            {
+                new OrderItem { id = 1, Count = 2, product = StaticProduct.Vegemite_Scroll },
+                new OrderItem { id = 2, Count = 21, product = StaticProduct.Blueberry_Muffin },
+                new OrderItem { id = 3, Count = 7, product = StaticProduct.Croissant }
+            };
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+
+            //Assert
+            Assert.IsNull(resultProductData[0].ResultProductPackDatas);
+
+            Assert.IsNotNull(resultProductData[1].ResultProductPackDatas);
+            Assert.AreEqual(resultProductData[1].PriceTotalThisOrder, 66.85);
+
+            Assert.IsNull(resultProductData[0].ResultProductPackDatas);
+
         }
     }
 }
