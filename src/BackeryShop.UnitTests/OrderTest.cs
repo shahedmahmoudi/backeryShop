@@ -88,5 +88,21 @@ namespace BuildEng.UnitTests
             Assert.IsNull(resultProductData[0].ResultProductPackDatas);
 
         }
+        [Test]
+        public virtual void withoutOrder()
+        {
+            // Arrange
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>();
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+
+            //Assert
+            Assert.AreEqual(resultProductData.Count.ToString(),"0");            
+        }
+
     }
 }

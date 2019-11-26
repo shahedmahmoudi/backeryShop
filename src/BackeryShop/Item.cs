@@ -58,17 +58,17 @@ namespace BackeryShop
             //    orderItem = orderItem
             //};
 
-            Customer customer = new Customer { id = 1 };
-            List<OrderItem> orderItem = new List<OrderItem>
-            {
-                new OrderItem { id = 1, Count = 2, product = StaticProduct.Vegemite_Scroll },
-                new OrderItem { id = 2, Count = 21, product = StaticProduct.Blueberry_Muffin },
-                new OrderItem { id = 3, Count = 7, product = StaticProduct.Croissant }
-            };
-            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
-            
+            //Customer customer = new Customer { id = 1 };
+            //List<OrderItem> orderItem = new List<OrderItem>
+            //{
+            //    //new OrderItem { id = 1, Count = 2, product = StaticProduct.Vegemite_Scroll },
+            //    //new OrderItem { id = 2, Count = 21, product = StaticProduct.Blueberry_Muffin },
+            //    //new OrderItem { id = 3, Count = 7, product = StaticProduct.Croissant }
+            //};
+            //Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
 
-            var ResultText = new List<string>();
+
+            //var ResultText = new List<string>();
             //ResultText.Add("10 VS5 $17.98");
             //ResultText.Add("    2 * 5 $8.99");
             //ResultText.Add("14 MB11 $54.80");
@@ -79,21 +79,31 @@ namespace BackeryShop
             //ResultText.Add("    1 x 3 $5.95");
 
 
-            OrderService orderService = new OrderService();
-            List<ResultProductData> td = orderService.CalculationOrder(order);
-           
-           foreach (var item in td)
-            {
-                Console.WriteLine(item.ToString());
-               
-             
-                foreach (var item1 in item.ResultProductPackDatas)
-                {
-                    Console.WriteLine(item1.ToString() );
-                    
-                }
-            }
+            // OrderService orderService = new OrderService();
+            // List<ResultProductData> td = orderService.CalculationOrder(order);
 
+            //foreach (var item in td)
+            // {
+            //     Console.WriteLine(item.ToString());
+
+
+            //     foreach (var item1 in item.ResultProductPackDatas)
+            //     {
+            //         Console.WriteLine(item1.ToString() );
+
+            //     }
+            // }
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>();
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+            if(resultProductData.Count.ToString()=="0")
+            {
+
+            }
             return 1;
         }
     }
