@@ -1,7 +1,6 @@
 ﻿using backeryShop.DataModel;
 using backeryShop.Models;
 using backeryShop.Services;
-using BackeryShop;
 using NUnit.Framework;
 using System.Collections.Generic;
 

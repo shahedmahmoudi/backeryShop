@@ -30,7 +30,7 @@ task :preflight => [:clean, :retrieve, :build, :test]
 build :compile do |awesome|
 
   awesome.prop 'Configuration', Configuration
-  awesome.sln = 'BuildEng.sln'
+  awesome.sln = 'BackeryShop.sln'
 
 end
 

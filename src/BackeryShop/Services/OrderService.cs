@@ -17,14 +17,11 @@ namespace backeryShop.Services
         /// <param name="order">
         /// @return </param>
         public List<ResultProductData> CalculationOrder(Order order)
-        {
-           
+        {           
             List<ResultProductData> resultProductDatas = new List<ResultProductData>();
-
             List<OrderItem> orderItem = order.orderItem;          
             foreach (var Oitem in orderItem)
             {
-
                 OrderItemService orderItemService = new OrderItemService();
                 List<List<ResultProductPackData>> packDat = orderItemService.GetAllOfPack(Oitem);
                 if (packDat.Count > 0)

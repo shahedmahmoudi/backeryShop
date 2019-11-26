@@ -21,7 +21,6 @@ namespace backeryShop.Services
         {
             ICollection<ProductPack> packs = orderItem.product.productPacks.OrderByDescending(x => x.count).ToList();
             List<List<ResultProductPackData>> AllPack = new List<List<ResultProductPackData>>();
-
             for (int i = 1; i < (1 << packs.Count); i++)
             {
                 int CountOrderItem = orderItem.Count;
