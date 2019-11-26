@@ -10,28 +10,7 @@ namespace BuildEng.UnitTests
     [TestFixture]
     public class OrderTest
     {
-        [Test]
-        public void init()
-        {
-            Item i = new Item();
-            int p = i.Add();
-            Assert.AreEqual(p, 1);
 
-
-
-            //// Arrange
-            //double beginningBalance = 11.99;
-            //double debitAmount = 4.55;
-            //double expected = 7.44;
-            //BankAccount account = new BankAccount("Mr. Bryan Walton", beginningBalance);
-
-            //// Act
-            //account.Debit(debitAmount);
-
-            //// Assert
-            //double actual = account.Balance;
-            //Assert.AreEqual(expected, actual, 0.001, "Account not debited correctly");
-        }
         [Test]
         public virtual void SuccessTestInAssignment()
         {
@@ -46,11 +25,33 @@ namespace BuildEng.UnitTests
             Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
             OrderService orderService = new OrderService();
 
+            //Arrange Result
+            var ResultText = new List<string>();
+            ResultText.Add("10 VS5 $17.98");
+            ResultText.Add("    2 * 5 $8.99");
+            ResultText.Add("14 MB11 $54.80");
+            ResultText.Add("    1 * 8 $24.95");
+            ResultText.Add("    3 * 2 $9.95");
+            ResultText.Add("13 CF $25.85");
+            ResultText.Add("    2 * 5 $9.95");
+            ResultText.Add("    1 x 3 $5.95");
             // Act            
-            List<ResultProductPackData> ListPackResult = orderService.CalculationOrder(order);
-            Assert.IsNotNull(ListPackResult);
-            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
 
+            // Assert
+            Assert.IsNotNull(resultProductData);
+            int inx = 0;
+            foreach (var itemProduct in resultProductData)
+            {
+                Assert.AreEqual(itemProduct.Result, true);
+                Assert.AreEqual(itemProduct.ToString(), ResultText[inx]);
+                inx++;
+                foreach (var itemPack in itemProduct.ResultProductPackDatas)
+                {
+                    Assert.AreEqual(itemPack.ToString(), ResultText[inx]);
+                    inx++;
+                }
+            }          
         }
     }
 }
