@@ -93,17 +93,22 @@ namespace BackeryShop
 
             //     }
             // }
+            // Arrange
             Customer customer = new Customer { id = 1 };
-            List<OrderItem> orderItem = new List<OrderItem>();
+            List<OrderItem> orderItem = new List<OrderItem>
+            {
+                new OrderItem { id = 3, Count = 15, product = StaticProduct.Blueberry_Muffin }
+            };
             Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
             OrderService orderService = new OrderService();
 
             // Act            
             List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
-            if(resultProductData.Count.ToString()=="0")
-            {
+            decimal op = resultProductData[0].PriceTotalThisOrder;
+            string ppp= resultProductData[0].PriceTotalThisOrder.ToString();
 
-            }
+            //Assert
+
             return 1;
         }
     }

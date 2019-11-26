@@ -70,7 +70,6 @@ namespace BuildEng.UnitTests
             List<OrderItem> orderItem = new List<OrderItem>
             {
                 new OrderItem { id = 1, Count = 2, product = StaticProduct.Vegemite_Scroll },
-                new OrderItem { id = 2, Count = 21, product = StaticProduct.Blueberry_Muffin },
                 new OrderItem { id = 3, Count = 7, product = StaticProduct.Croissant }
             };
             Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
@@ -80,10 +79,7 @@ namespace BuildEng.UnitTests
             List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
 
             //Assert
-            Assert.IsNull(resultProductData[0].ResultProductPackDatas);
-
-            Assert.IsNotNull(resultProductData[1].ResultProductPackDatas);
-            Assert.AreEqual(resultProductData[1].PriceTotalThisOrder, 66.85);
+            Assert.IsNull(resultProductData[0].ResultProductPackDatas);           
 
             Assert.IsNull(resultProductData[0].ResultProductPackDatas);
 
@@ -104,5 +100,93 @@ namespace BuildEng.UnitTests
             Assert.AreEqual(resultProductData.Count.ToString(),"0");            
         }
 
+        [Test]
+        public virtual void OneOfThemSuccess()
+        {
+            // Arrange
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>
+            {
+                new OrderItem { id = 1, Count = 2, product = StaticProduct.Vegemite_Scroll },
+                new OrderItem { id = 2, Count = 21, product = StaticProduct.Blueberry_Muffin },
+                new OrderItem { id = 3, Count = 7, product = StaticProduct.Croissant }
+            };
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+
+            //Assert
+            Assert.IsNull(resultProductData[0].ResultProductPackDatas);
+
+            Assert.IsNotNull(resultProductData[1].ResultProductPackDatas);
+            Assert.AreEqual(resultProductData[1].PriceTotalThisOrder, 66.85);
+
+            Assert.IsNull(resultProductData[0].ResultProductPackDatas);
+
+        }
+
+        [Test]
+        public virtual void Vegemite_ScrollItemTest()
+        {
+            // Arrange
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>
+            {
+                new OrderItem { id = 3, Count = 23, product = StaticProduct.Vegemite_Scroll }
+            };
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+
+            //Assert
+            Assert.IsNotNull(resultProductData[0].ResultProductPackDatas);
+            Assert.AreEqual(resultProductData[0].PriceTotalThisOrder.ToString(), "42.95");
+        }
+
+        [Test]
+        public virtual void BlueberryMuffinItemTest()
+        {
+            // Arrange
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>
+            {
+                new OrderItem { id = 3, Count = 15, product = StaticProduct.Blueberry_Muffin }
+            };
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+
+            //Assert
+            Assert.IsNotNull(resultProductData[0].ResultProductPackDatas);
+            Assert.AreEqual(resultProductData[0].PriceTotalThisOrder.ToString(), "50.85");
+        }
+
+
+
+        [Test]
+        public virtual void CroissantItemTest()
+        {
+            // Arrange
+            Customer customer = new Customer { id = 1 };
+            List<OrderItem> orderItem = new List<OrderItem>
+            {
+                new OrderItem { id = 3, Count = 14, product = StaticProduct.Croissant }
+            };
+            Order order = new Order { id = 1, customer = customer, orderItem = orderItem };
+            OrderService orderService = new OrderService();
+
+            // Act            
+            List<ResultProductData> resultProductData = orderService.CalculationOrder(order);
+
+            //Assert
+            Assert.IsNotNull(resultProductData[0].ResultProductPackDatas);
+            Assert.AreEqual(resultProductData[0].PriceTotalThisOrder, 26.94);
+        }
     }
 }
