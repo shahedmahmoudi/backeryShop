@@ -3,8 +3,7 @@ using backeryShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace backeryShop.Services
 {
@@ -18,22 +17,22 @@ namespace backeryShop.Services
     {
         /// <param name="orderItem">
 		/// @return </param>
-        public List<List<PacksData>> GetAllOfPack(OrderItem orderItem)
+        public List<List<ResultProductPackData>> GetAllOfPack(OrderItem orderItem)
         {
             ICollection<ProductPack> packs = orderItem.product.productPacks.OrderByDescending(x => x.count).ToList();
-            List<List<PacksData>> AllPack = new List<List<PacksData>>();
+            List<List<ResultProductPackData>> AllPack = new List<List<ResultProductPackData>>();
 
             for (int i = 1; i < (1 << packs.Count); i++)
             {
                 int CountOrderItem = orderItem.Count;
-                List<PacksData> answer = new List<PacksData>();
+                List<ResultProductPackData> answer = new List<ResultProductPackData>();
                 for (int j = 0; j < packs.Count; j++)
                 {
                     if ((i & (1 << j)) > 0)
                     {
                         int weight = packs.ToArray()[j].count;
                         int count = CountOrderItem >= weight ? CountOrderItem / weight : 0;
-                        answer.Add(PacksData.CreatePacksData(count, packs.ToArray()[j], orderItem.product));
+                        answer.Add(ResultProductPackData.CreatePacksData(count, packs.ToArray()[j], orderItem.product));
                         if (CountOrderItem % weight == 0)
                         {
                             AllPack.Add(answer);
@@ -47,10 +46,10 @@ namespace backeryShop.Services
         }
         /// <param name="packDat">
         /// @return </param>
-        internal List<PacksData> findBestPack(List<List<PacksData>> packDat)
+        internal List<ResultProductPackData> findBestPack(List<List<ResultProductPackData>> packDat)
         {
-            List<PacksData> result = packDat[0];
-            foreach (List<PacksData> answer in packDat)            
+            List<ResultProductPackData> result = packDat[0];
+            foreach (List<ResultProductPackData> answer in packDat)            
                 if (totalCount(answer) < totalCount(result) && calculateTotalPrice(answer) <= calculateTotalPrice(result))                
                     result = answer;                
             
@@ -58,7 +57,7 @@ namespace backeryShop.Services
         }
         /// <param name="answerPacksData">
         /// @return </param>
-        private decimal calculateTotalPrice(List<PacksData> answer)
+        private decimal calculateTotalPrice(List<ResultProductPackData> answer)
         {
             decimal total = Decimal.Zero;
             foreach (var item in answer)           
@@ -68,7 +67,7 @@ namespace backeryShop.Services
         }
         /// <param name="answerPacksData">
         /// @return </param>
-        private int totalCount(List<PacksData> answer)
+        private int totalCount(List<ResultProductPackData> answer)
         {
             return answer.Sum(x => x.Count);
         }

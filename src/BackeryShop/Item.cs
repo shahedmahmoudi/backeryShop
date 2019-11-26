@@ -10,16 +10,13 @@ namespace BackeryShop
     {
 
         public int Add()
-        {
-            Product product = StaticProduct.Vegemite_Scroll;
-            Product productblue = StaticProduct.Blueberry_Muffin;
-            Product productC = StaticProduct.Croissant;
+        { 
             Customer customer = new Customer { id = 1 };
             List<OrderItem> orderItem = new List<OrderItem>
             {
-                new OrderItem { id = 1, Count = 10, product = product },
-                new OrderItem { id = 2, Count = 14, product = productblue },
-                new OrderItem { id = 3, Count = 13, product = productC }
+                new OrderItem { id = 1, Count = 10, product = StaticProduct.Vegemite_Scroll },
+                new OrderItem { id = 2, Count = 14, product = StaticProduct.Blueberry_Muffin },
+                new OrderItem { id = 3, Count = 13, product = StaticProduct.Croissant }
             };
 
             Order order = new Order
@@ -61,10 +58,14 @@ namespace BackeryShop
             //    orderItem = orderItem
             //};
             OrderService orderService = new OrderService();
-            List<ResultData> td = orderService.CalculationOrder(order);
+            List<ResultProductData> td = orderService.CalculationOrder(order);
             foreach (var item in td)
             {
-                Console.WriteLine(item.packsData.ToString());
+                Console.WriteLine(item.ToString());
+                foreach (var item1 in item.ResultProductPackDatas)
+                {
+                    Console.WriteLine(item1.ToString());
+                }
             }
 
             return 1;

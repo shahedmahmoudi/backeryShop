@@ -1,13 +1,15 @@
 ﻿using backeryShop.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace backeryShop.DataModel
 {
-    class PacksData
+    /// <summary>
+    ///  for store all pack, best pack in transaction and Test
+    /// 
+    /// @author Shahed Mahmoudi, shahed.mahmoudi@gmail.com
+    /// @since 2019-11-26
+    /// </summary>
+   public class ResultProductPackData
     {
         private   int count;
         private   ProductPack productPack;
@@ -16,13 +18,13 @@ namespace backeryShop.DataModel
         /// <param name="count"> </param>
         /// <param name="productPack">
         /// @return </param>
-        public PacksData(int count, ProductPack productPack,Product product)
+        public ResultProductPackData(int count, ProductPack productPack,Product product)
         {
             this.Count = count;
             this.ProductPack = productPack;
             this.Product = product;
         }
-        public PacksData(int count,  Product product)
+        public ResultProductPackData(int count,  Product product)
         {
             this.Count = count;
             this.ProductPack = productPack;
@@ -36,13 +38,13 @@ namespace backeryShop.DataModel
         /// <param name="count"> </param>
         /// <param name="productPack">
         /// @return </param>
-        public static PacksData CreatePacksData(int count, ProductPack productPack,Product product)
+        public static ResultProductPackData CreatePacksData(int count, ProductPack productPack,Product product)
         {
-            return new PacksData(count, productPack,product);
+            return new ResultProductPackData(count, productPack,product);
         }
         public override string ToString()
         {
-            return count + " * " + productPack.count.ToString()+" $"+ProductPack.price;
+            return "    "+count + " * " + productPack.count.ToString()+" $"+ProductPack.price;
         }
 
     }

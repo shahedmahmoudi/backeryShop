@@ -1,10 +1,7 @@
 ﻿using backeryShop.DataModel;
 using backeryShop.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace backeryShop.Interfaces
 {
@@ -17,8 +14,8 @@ namespace backeryShop.Interfaces
     interface IOrderItemService
     {
         int GetAllOfPack(OrderItem orderItem);
-        List<PacksData> findBestPack(List<List<PacksData>> packDat);
-        decimal calculateTotalPrice(List<PacksData> answer);
-        int totalCount(List<PacksData> answer);
+        List<ResultProductPackData> findBestPack(List<List<ResultProductPackData>> packDat);
+        decimal calculateTotalPrice(List<ResultProductPackData> answer);
+        int totalCount(List<ResultProductPackData> answer);
     }
 }

@@ -1,10 +1,7 @@
 ﻿using backeryShop.DataModel;
 using backeryShop.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace backeryShop.Interfaces
 {
@@ -16,6 +13,6 @@ namespace backeryShop.Interfaces
     /// </summary>
     interface IOrderService
     {
-        List<ResultData> CalculationOrder(Order order);
+        List<ResultProductData> CalculationOrder(Order order);
     }
 }

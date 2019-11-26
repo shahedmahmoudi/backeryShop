@@ -1,11 +1,8 @@
 ﻿using backeryShop.DataModel;
 using backeryShop.Interfaces;
 using backeryShop.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace backeryShop.Services
 {
@@ -15,35 +12,39 @@ namespace backeryShop.Services
     /// @author Shahed Mahmoudi, shahed.mahmoudi@gmail.com
     /// @since 2019-11-25
     /// </summary>
-    class OrderService: IOrderService
+   public class OrderService: IOrderService
     {
         /// <param name="order">
         /// @return </param>
-        public List<ResultData> CalculationOrder(Order order)
+        public List<ResultProductData> CalculationOrder(Order order)
         {
-            List<ResultData> result = new List<ResultData>();
+           
+            List<ResultProductData> resultProductDatas = new List<ResultProductData>();
+
             List<OrderItem> orderItem = order.orderItem;          
             foreach (var Oitem in orderItem)
             {
 
                 OrderItemService orderItemService = new OrderItemService();
-                List<List<PacksData>> packDat = orderItemService.GetAllOfPack(Oitem);
+                List<List<ResultProductPackData>> packDat = orderItemService.GetAllOfPack(Oitem);
                 if (packDat.Count > 0)
                 {
-                    List<PacksData> BestPack = orderItemService.findBestPack(packDat);
+                    List<ResultProductPackData> resultProductPackData = new List<ResultProductPackData>();
+                    decimal PriceAll = decimal.Zero;
+                    List<ResultProductPackData> BestPack = orderItemService.findBestPack(packDat);
                     foreach (var BestItem in BestPack)
                     {
-                        result.Add(new ResultData { packsData = BestItem, Result = true });
-                    }
+                        PriceAll += BestItem.ProductPack.price * BestItem.Count;
+                        resultProductPackData.Add(new ResultProductPackData(BestItem.Count, BestItem.ProductPack, BestItem.Product));                       
+                    }                   
+                    resultProductDatas.Add(new ResultProductData { orderItem = Oitem, PriceTotalThisOrder = PriceAll, Result = true, ResultProductPackDatas = resultProductPackData });
                 }
                 else
                 {
-                    PacksData packdata = new PacksData(Oitem.Count,  Oitem.product);
-                      
-                    result.Add(new ResultData { Result = false });
+                    resultProductDatas.Add(new ResultProductData { orderItem = Oitem, PriceTotalThisOrder = decimal.Zero, ResultProductPackDatas = null, Result = false });
                 }
             }
-            return result;
+            return resultProductDatas;
         }
     }
 }

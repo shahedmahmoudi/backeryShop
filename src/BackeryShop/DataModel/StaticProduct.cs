@@ -34,8 +34,8 @@ namespace backeryShop.DataModel
 
         public static List<ProductPack> Croissant_Pack = new List<ProductPack>()
         {
-            new ProductPack { count = 3, id =6, price = 5.99M },
-            new ProductPack { count = 5, id = 7, price = 9.99M },
+            new ProductPack { count = 3, id =6, price = 5.95M },
+            new ProductPack { count = 5, id = 7, price = 9.95M },
               new ProductPack { count = 9, id = 8, price = 16.99M }
         };
 
