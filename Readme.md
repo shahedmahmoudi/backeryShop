@@ -47,6 +47,3 @@ A successfully passing test(s) that demonstrates the following output:
 
 ### Build
 `run `Rake -T command in project root folder to list the jobs
-
- ### Sonar
-run `sonar-scanner` command in project root folder
